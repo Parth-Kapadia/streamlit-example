@@ -31,5 +31,3 @@ fig, ax = plt.subplots()
 ax.hist(arr, bins=20)
 
 fig  # 👈 Draw a Matplotlib chart
-Copy
-How Magic works
