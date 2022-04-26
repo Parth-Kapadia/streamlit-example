@@ -15,24 +15,21 @@ forums](https://discuss.streamlit.io).
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
 
+import pandas as pd
+df = pd.DataFrame({'col1': [1,2,3]})
+df  # 👈 Draw the dataframe
 
-with st.echo(code_location='below'):
-    total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
-    num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
+x = 10
+'x', x  # 👈 Draw the string 'x' and then the value of x
 
-    Point = namedtuple('Point', 'x y')
-    data = []
+# Also works with most supported chart types
+import matplotlib.pyplot as plt
+import numpy as np
 
-    points_per_turn = total_points / num_turns
+arr = np.random.normal(1, 1, size=100)
+fig, ax = plt.subplots()
+ax.hist(arr, bins=20)
 
-    for curr_point_num in range(total_points):
-        curr_turn, i = divmod(curr_point_num, points_per_turn)
-        angle = (curr_turn + 1) * 2 * math.pi * i / points_per_turn
-        radius = curr_point_num / total_points
-        x = radius * math.cos(angle)
-        y = radius * math.sin(angle)
-        data.append(Point(x, y))
-
-    st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
-        .mark_circle(color='#0068c9', opacity=0.5)
-        .encode(x='x:Q', y='y:Q'))
+fig  # 👈 Draw a Matplotlib chart
+Copy
+How Magic works
